@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import heroIllustration from '@/public/bgs/hero-illustration.jpg';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -77,7 +78,8 @@ export default function Hero() {
         className='absolute inset-x-0 -top-[15%] bottom-0 will-change-transform'
       >
         <Image
-          src='/bgs/hero-illustration.jpg'
+          src={heroIllustration}
+          placeholder='blur'
           alt=''
           fill
           className='pointer-events-none object-cover object-[85%_center] md:object-right'
