@@ -14,9 +14,38 @@ const geist = Geist({
 });
 
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
+
 export const metadata: Metadata = {
   title: 'kriuu.',
-  description: 'Comunidad para shipear, buildear y lanzar juntos.',
+  description: 'La crew de engineers, designers y founders construyendo desde Latam.',
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: 'kriuu.',
+    description: 'La crew de engineers, designers y founders construyendo desde Latam.',
+    url: siteUrl,
+    siteName: 'kriuu.',
+    images: [
+      {
+        url: '/api/og',
+        width: 1200,
+        height: 630,
+        alt: 'kriuu. — La crew de engineers, designers y founders construyendo desde Latam.',
+      },
+    ],
+    locale: 'es_LA',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'kriuu.',
+    description: 'La crew de engineers, designers y founders construyendo desde Latam.',
+    images: ['/api/og'],
+  },
 };
 
 export default function RootLayout({
