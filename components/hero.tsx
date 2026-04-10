@@ -77,7 +77,7 @@ export default function Hero() {
         className='absolute inset-x-0 -top-[15%] bottom-0 will-change-transform'
       >
         <Image
-          src='/bgs/hero-illustration.png'
+          src='/bgs/hero-illustration.jpg'
           alt=''
           fill
           className='pointer-events-none object-cover object-[85%_center] md:object-right'

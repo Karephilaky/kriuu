@@ -10,7 +10,7 @@ export default function JoinCta() {
       className='relative flex min-h-150 items-center justify-center overflow-hidden border-t border-dark/8 py-16 md:py-30'
     >
       <Image
-        src='/bgs/bg-cta.png'
+        src='/bgs/bg-cta.webp'
         alt=''
         fill
         sizes='100vw'

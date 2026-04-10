@@ -33,7 +33,7 @@ export const MEMBERS: Member[] = [
     linkedin: undefined,
   },
   {
-    name: 'Andre Campaña',
+    name: 'Andrea Campaña',
     role: 'Estudiante de Software',
     photo: undefined,
     linkedin: undefined,
