@@ -1,61 +1,19 @@
-'use client';
-
 import Image from 'next/image';
 import heroIllustration from '@/public/bgs/hero-illustration.webp';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function Hero() {
-  const containerRef = useRef<HTMLElement>(null);
-  const parallaxRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-
-      mm.add('(min-width: 768px)', () => {
-        gsap.to(parallaxRef.current, {
-          yPercent: 15,
-          ease: 'none',
-          force3D: true,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        });
-      });
-
-      return () => mm.revert();
-    },
-    { scope: containerRef },
-  );
-
   return (
-    <section
-      ref={containerRef}
-      className='relative h-dvh w-full overflow-hidden'
-    >
-      <div
-        ref={parallaxRef}
-        className='absolute inset-x-0 -top-[15%] bottom-0 will-change-transform'
-      >
-        <Image
-          src={heroIllustration}
-          alt=''
-          fill
-          className='pointer-events-none object-cover object-[85%_center] md:object-right'
-          priority
-        />
-      </div>
+    <section className='relative h-dvh w-full overflow-hidden'>
+      <Image
+        src={heroIllustration}
+        alt=''
+        fill
+        className='pointer-events-none object-cover object-[85%_center] md:object-right'
+        priority
+      />
 
       <div className='relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col gap-5 px-5 pt-28 md:gap-7 md:px-8 xl:justify-center xl:pt-14'>
         <h1 className='max-w-5xl font-display text-4xl font-semibold leading-none tracking-tight text-dark sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:max-w-7xl 2xl:text-9xl'>
