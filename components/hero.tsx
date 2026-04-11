@@ -18,17 +18,23 @@ export default function Hero() {
 
   useGSAP(
     () => {
-      gsap.to(parallaxRef.current, {
-        yPercent: 15,
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 768px)', () => {
+        gsap.to(parallaxRef.current, {
+          yPercent: 15,
+          ease: 'none',
+          force3D: true,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        });
       });
+
+      return () => mm.revert();
     },
     { scope: containerRef },
   );
@@ -44,7 +50,6 @@ export default function Hero() {
       >
         <Image
           src={heroIllustration}
-          placeholder='blur'
           alt=''
           fill
           className='pointer-events-none object-cover object-[85%_center] md:object-right'
