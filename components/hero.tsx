@@ -17,7 +17,7 @@ export default function Hero() {
       />
       <div
         aria-hidden='true'
-        className='pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent via-cream/70 to-cream md:h-44'
+        className='pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-linear-to-b from-transparent via-cream/70 to-cream md:h-44'
       />
 
       <div className='relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col gap-5 px-5 pt-28 md:gap-7 md:px-8 xl:justify-center xl:pt-14'>
