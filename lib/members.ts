@@ -10,7 +10,7 @@ export const MEMBERS: Member[] = [
   {
     name: 'Luis Velasco',
     role: 'AI Engineer',
-    desc: 'Ingeniero en software especializado en AI. Experiencia sólida en aplicaciones full stack potenciadas con LLMs. Obsesión por shippear y convencido de que Ecuador tiene todo para liderar, solo falta construirlo.',
+    desc: 'Ingeniero en software especializado en AI. Experiencia sólida en aplicaciones full stack potenciadas con LLMs. Convencido de que Ecuador tiene todo para liderar, solo falta construirlo.',
     photo: '/members/luis-velasco.png',
     linkedin: 'https://www.linkedin.com/in/luisvelasco27/',
   },
