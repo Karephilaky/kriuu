@@ -8,7 +8,7 @@ export default function JoinCta() {
   return (
     <section
       id='join'
-      className='relative flex min-h-150 items-center justify-center overflow-hidden border-t border-dark/8 bg-[#6a6762] py-16 md:py-30'
+      className='relative flex min-h-150 items-center justify-center overflow-hidden border-t border-dark/8  py-16 md:py-30'
     >
       <Image
         src={bgCta}
