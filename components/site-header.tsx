@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const NAV_LINKS = [
   { href: '#manifiesto', label: 'Manifiesto' },
-  { href: '#directory', label: 'Directory' },
+  { href: '#team', label: 'Team' },
 ] as const;
 
 export default function SiteHeader() {
@@ -59,13 +59,13 @@ export default function SiteHeader() {
       {/* Mobile dropdown */}
       {open && (
         <nav className='border-t border-dark/8 bg-cream/98 md:hidden'>
-          <div className='mx-auto max-w-[1280px] px-5 py-2'>
+          <div className='mx-auto max-w-7xl px-5 py-2'>
             {NAV_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className='flex min-h-[44px] items-center text-sm font-medium text-dark/70 transition-opacity hover:opacity-60'
+                className='flex min-h-11 items-center text-sm font-medium text-dark/70 transition-opacity hover:opacity-60'
               >
                 {label}
               </Link>

@@ -8,22 +8,22 @@ type Moment = {
 
 export const MOMENTS: Moment[] = [
   {
-    src: '/moments/kriuu-2.jpeg',
+    src: '/moments/kriuu-2.webp',
     caption: 'Hackathon Nacional · 3er lugar',
     author: 'Luis, Johannes, Byron & Stiven',
   },
   {
-    src: '/moments/kriuu-3.jpeg',
+    src: '/moments/kriuu-3.webp',
     caption: 'Hult Prize',
     author: 'Johannes Carofilis',
   },
   {
-    src: '/moments/kriuu-4.jpeg',
+    src: '/moments/kriuu-4.webp',
     caption: 'Charla · Ciencia de Datos',
     author: 'Johannes & Byron · PUCE Manabí',
   },
   {
-    src: '/moments/kriuu-5.jpg',
+    src: '/moments/kriuu-5.webp',
     caption: 'Hackathon Nacional · 2do lugar',
     author: 'Luis Velasco',
   },

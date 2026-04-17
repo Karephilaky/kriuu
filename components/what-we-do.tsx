@@ -56,7 +56,7 @@ export default function LoQueHacemos() {
           <div className='group relative w-full shrink-0 overflow-hidden lg:w-105 xl:w-120'>
             <div className='relative aspect-3/4 min-h-85 overflow-hidden lg:aspect-auto lg:h-full lg:min-h-115'>
               <Image
-                src='/moments/kriuu-7.png'
+                src='/moments/kriuu-7.webp'
                 alt='Lo que hacemos en Kriuu'
                 fill
                 className='object-cover transition-transform duration-500 group-hover:scale-[1.02]'

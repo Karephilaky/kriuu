@@ -37,7 +37,7 @@ export default function QueEsKriuu() {
           <div className='group relative w-full shrink-0 overflow-hidden lg:w-105 xl:w-120'>
             <div className='relative aspect-3/4 min-h-85 overflow-hidden lg:aspect-auto lg:h-full lg:min-h-115'>
               <Image
-                src='/moments/kriuu-6.jpeg'
+                src='/moments/kriuu-6.webp'
                 alt='El equipo de Kriuu'
                 fill
                 className='object-cover transition-transform duration-500 group-hover:scale-[1.02]'

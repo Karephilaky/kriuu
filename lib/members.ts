@@ -25,7 +25,7 @@ export const MEMBERS: Member[] = [
     name: 'Andrea Campaña',
     role: 'Estudiante de Software',
     desc: 'Estudiante de Software en la PUCE Manabí, orientada al desarrollo frontend con enfoque en UI/UX. Integro ilustración digital y conceptual en la creación de experiencias con identidad, comprometida con el desarrollo de soluciones con impacto social y enfoque humano. Siempre dispuesta a contar una historia.',
-    photo: '/members/andrea-campana.png',
+    photo: '/members/andrea-campana.webp',
     linkedin: undefined,
   },
   {
