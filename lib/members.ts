@@ -11,14 +11,14 @@ export const MEMBERS: Member[] = [
     name: 'Luis Velasco',
     role: 'AI Engineer',
     desc: 'Ingeniero en software especializado en AI. Experiencia sólida en aplicaciones full stack potenciadas con LLMs. Convencido de que Ecuador tiene todo para liderar, solo falta construirlo.',
-    photo: '/members/luis-velasco.png',
+    photo: '/members/luis-velasco.webp',
     linkedin: 'https://www.linkedin.com/in/luisvelasco27/',
   },
   {
     name: 'Johannes Carofilis Veliz',
     role: 'Software Engineer | QA | AI & Tech Community Builder',
     desc: 'Ingeniero en Software (PUCE Manabí) con experiencia en desarrollo fullstack, QA y liderazgo tecnológico. Campus Director de Hult Prize y fundador de comunidades de desarrollo en Manabí. Combina tecnología, filosofía y emprendimiento con foco en IA, ética tecnológica e impacto social.',
-    photo: '/members/johannes-carofilis.png',
+    photo: '/members/johannes-carofilis.webp',
     linkedin: 'https://www.linkedin.com/in/johannes-carofilis-a38b49288/',
   },
   {
@@ -36,18 +36,23 @@ export const MEMBERS: Member[] = [
     linkedin: undefined,
   },
   {
+    name: 'Vanessa Carvajal Villa',
+    role: 'Estudiante de Ingeniería en Software',
+    desc: 'Estudiante de Ingeniería en Software en la PUCE Manabí y de Tecnologías de la Información en la UTM. Interesada en backend y bases de datos. Me gusta liderar, aprender constantemente y trabajar en equipo para seguir creciendo.',
+    photo: '/members/vanessa-carvajal.webp',
+    linkedin: undefined,
+  },
+  {
+    name: 'Valeria García Cajas',
+    role: 'Estudiante de Software',
+    desc: 'Estudiante comprometida y apasionada en aprender del desarrollo de software, para poder aplicar estas herramientas digitales con el fin de crear soluciones útiles y significativas para la sociedad.',
+    photo: '/members/valeria-garcia.webp',
+    linkedin:
+      'https://www.linkedin.com/in/valeria-garcía-cajas-a412453b3?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+  },
+  {
     name: 'Stiven Guanoquiza',
     role: 'Frontend Engineer',
-    photo: undefined,
-    linkedin: undefined,
-  },
-  {
-    name: 'Valentina Cajas',
-    photo: undefined,
-    linkedin: undefined,
-  },
-  {
-    name: 'Vanessa',
     photo: undefined,
     linkedin: undefined,
   },
