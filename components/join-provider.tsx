@@ -356,7 +356,7 @@ export default function JoinProvider({ children }: { children: ReactNode }) {
                     Solicitud enviada.
                   </h2>
                   <p className='mt-4 text-base leading-7 text-dark/68'>
-                    Si tus datos pasan las validaciones, tu inscripción quedará registrada. También puedes entrar al grupo de WhatsApp desde el botón de arriba.
+                    Tu solicitud quedó registrada. También puedes entrar al grupo de WhatsApp desde el botón de arriba.
                   </p>
                   <Button
                     type='button'
