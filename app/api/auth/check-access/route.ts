@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const normalizedEmail = email?.trim().toLowerCase();
 
   if (!normalizedEmail) {
-    return NextResponse.json({ error: 'Ingresa tu correo.' }, { status: 400 });
+    return NextResponse.json({ success: false, error: 'Ingresa tu correo.' }, { status: 400 });
   }
 
   let supabaseAdmin;
@@ -18,6 +18,7 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json(
       {
+        success: false,
         error:
           'Falta configurar SUPABASE_SERVICE_ROLE_KEY. Es necesaria para validar cuentas aprobadas y roles.',
       },
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
     .maybeSingle();
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 
   const authUser = await findAuthUserByEmail(normalizedEmail);

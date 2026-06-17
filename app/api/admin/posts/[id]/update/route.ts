@@ -9,6 +9,7 @@ type RouteContext = {
 };
 
 const MAX_COVER_SIZE = 5 * 1024 * 1024;
+const ALLOWED_COVER_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 export async function POST(request: Request, context: RouteContext) {
   const { id } = await context.params;
@@ -60,12 +61,19 @@ export async function POST(request: Request, context: RouteContext) {
       );
     }
 
-    const extension = cover.name.split('.').pop()?.toLowerCase() || 'webp';
+    if (!ALLOWED_COVER_TYPES.has(cover.type)) {
+      return NextResponse.json(
+        { success: false, error: 'La portada debe ser JPG, PNG o WEBP.' },
+        { status: 400 },
+      );
+    }
+
+    const extension = getCoverExtension(cover);
     const path = `${user.id}/${crypto.randomUUID()}.${extension}`;
     const { error: uploadError } = await supabaseAdmin.storage
       .from('post-covers')
       .upload(path, cover, {
-        contentType: cover.type || 'image/webp',
+        contentType: cover.type,
         upsert: false,
       });
 
@@ -104,4 +112,10 @@ export async function POST(request: Request, context: RouteContext) {
   });
 
   return NextResponse.json({ success: true, message: 'Publicación actualizada.' });
+}
+
+function getCoverExtension(file: File) {
+  if (file.type === 'image/png') return 'png';
+  if (file.type === 'image/webp') return 'webp';
+  return 'jpg';
 }

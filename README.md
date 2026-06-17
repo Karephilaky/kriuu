@@ -18,6 +18,7 @@ Abre `http://localhost:3000`.
 Crea un archivo `.env.local` en la raíz del proyecto:
 
 ```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=https://xhuflxdmczzvaqrziuak.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=YOUR_SUPABASE_PUBLISHABLE_KEY
 SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
@@ -39,6 +40,12 @@ El flujo implementado:
 5. El usuario aprobado entra a `/login`, solicita crear contraseña, abre el correo y llega a `/auth/update-password`.
 6. Usuarios con rol `member`, `author`, `admin` o `superadmin` entran a `/dashboard`. Admins y superadmins entran a `/admin`.
 
+## Publicaciones
+
+Los miembros pueden crear publicaciones desde la plataforma y enviarlas a revisión. Admins y superadmins pueden aprobar, rechazar o enviar publicaciones aprobadas de vuelta a revisión. Las publicaciones públicas aparecen en la landing y las publicaciones solo para miembros muestran su existencia, pero requieren cuenta para leerlas.
+
+Las portadas se suben al bucket `post-covers` y sólo aceptan imágenes JPG, PNG o WEBP de hasta 5MB.
+
 ## Primer Superadmin
 
 Para crear el primer superadmin:
@@ -58,10 +65,6 @@ on conflict do nothing;
 ```
 
 Después entra a `/login`, crea/restablece contraseña si hace falta y abre `/admin`.
-
-## Pendiente Para La Siguiente Fase
-
-Quedan como placeholders: creación editorial de posts, revisión completa de posts, comentarios, votos/upvotes y moderación.
 
 ## Comandos
 

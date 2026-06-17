@@ -24,8 +24,9 @@ export async function POST(request: Request, context: RouteContext) {
     .from('posts')
     .update({
       status: 'rejected',
-      approved_by: user.id,
-      approved_at: new Date().toISOString(),
+      approved_by: null,
+      approved_at: null,
+      published_at: null,
       review_notes: reviewNotes?.trim() ?? '',
     })
     .eq('id', id)

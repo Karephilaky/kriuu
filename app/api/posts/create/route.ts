@@ -5,6 +5,7 @@ import { createPostSlug } from '@/lib/posts';
 import { createAdminSupabaseClient } from '@/lib/supabase/admin';
 
 const MAX_COVER_SIZE = 5 * 1024 * 1024;
+const ALLOWED_COVER_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 export async function POST(request: Request) {
   const { user, roles, isActive } = await getCurrentSessionUser();
@@ -39,12 +40,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const extension = cover.name.split('.').pop()?.toLowerCase() || 'webp';
+    if (!ALLOWED_COVER_TYPES.has(cover.type)) {
+      return NextResponse.json(
+        { success: false, error: 'La portada debe ser JPG, PNG o WEBP.' },
+        { status: 400 },
+      );
+    }
+
+    const extension = getCoverExtension(cover);
     const path = `${user.id}/${crypto.randomUUID()}.${extension}`;
     const { error: uploadError } = await supabaseAdmin.storage
       .from('post-covers')
       .upload(path, cover, {
-        contentType: cover.type || 'image/webp',
+        contentType: cover.type,
         upsert: false,
       });
 
@@ -73,4 +81,10 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ success: true });
+}
+
+function getCoverExtension(file: File) {
+  if (file.type === 'image/png') return 'png';
+  if (file.type === 'image/webp') return 'webp';
+  return 'jpg';
 }

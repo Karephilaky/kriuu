@@ -24,10 +24,16 @@ export default async function ApplicationDetailPage({ params }: PageProps) {
 
   if (!application) notFound();
 
-  const reviewerResult = application.reviewed_by
-    ? await supabaseAdmin.auth.admin.getUserById(application.reviewed_by)
-    : null;
-  const reviewerEmail = reviewerResult?.data.user?.email ?? '';
+  let reviewerEmail = '';
+
+  if (application.reviewed_by) {
+    try {
+      const reviewerResult = await supabaseAdmin.auth.admin.getUserById(application.reviewed_by);
+      reviewerEmail = reviewerResult.data.user?.email ?? '';
+    } catch {
+      reviewerEmail = '';
+    }
+  }
   const { data: reviewerProfile } = application.reviewed_by
     ? await supabaseAdmin
         .from('profiles')

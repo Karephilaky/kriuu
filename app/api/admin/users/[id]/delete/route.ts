@@ -23,14 +23,14 @@ export async function POST(_request: Request, context: RouteContext) {
   }
 
   const supabaseAdmin = createAdminSupabaseClient();
-  await supabaseAdmin.from('user_roles').delete().eq('user_id', id);
-  await supabaseAdmin.from('profiles').delete().eq('id', id);
-
   const { error } = await supabaseAdmin.auth.admin.deleteUser(id);
 
   if (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
+
+  await supabaseAdmin.from('user_roles').delete().eq('user_id', id);
+  await supabaseAdmin.from('profiles').delete().eq('id', id);
 
   return NextResponse.json({ success: true, message: 'Cuenta borrada.' });
 }

@@ -7,5 +7,5 @@ export function createPostSlug(title: string) {
     .replace(/^-+|-+$/g, '')
     .slice(0, 72);
 
-  return `${normalized || 'post'}-${crypto.randomUUID().slice(0, 8)}`;
+  return `${normalized || 'post'}-${crypto.randomUUID().slice(0, 16)}`;
 }
