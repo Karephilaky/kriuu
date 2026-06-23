@@ -27,6 +27,19 @@ KRIUU_SUPABASE_APPLICATIONS_TABLE=applications
 
 La publishable key de Supabase es pública. La service role key solo debe existir en `.env.local` y en variables privadas del hosting; nunca debe usarse en componentes cliente.
 
+## Mantener Supabase Activo
+
+El workflow `.github/workflows/keep-supabase-active.yml` hace una consulta mínima a `profiles` cada 6 días. También se puede ejecutar manualmente desde **GitHub > Actions > Keep Supabase active > Run workflow**.
+
+Configura estos secretos en **GitHub > Settings > Secrets and variables > Actions**:
+
+```text
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_PUBLISHABLE_KEY=tu_publishable_key
+```
+
+No uses la `SUPABASE_SERVICE_ROLE_KEY` para este workflow; la clave pública es suficiente para la consulta.
+
 ## Inscripciones Con Supabase
 
 El formulario de inscripción ahora funciona como postulación. Vive en `components/join-provider.tsx` y envía los datos a `/api/join`, que guarda el registro en `public.applications` con `status = pending`.

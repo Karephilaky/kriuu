@@ -1,0 +1,48 @@
+name: Keep Supabase active
+
+on:
+  schedule:
+    # GitHub cron cannot express a rolling "every 6 days" interval. Run daily
+    # and use the epoch-day check below to keep the interval exact across months.
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Decide whether today is a ping day
+        id: schedule
+        shell: bash
+        run: |
+          epoch_day=$(( $(date -u +%s) / 86400 ))
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] || (( epoch_day % 6 == 0 )); then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Query one Supabase row
+        if: steps.schedule.outputs.run == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        shell: bash
+        run: |
+          if [[ -z "$SUPABASE_URL" || -z "$SUPABASE_PUBLISHABLE_KEY" ]]; then
+            echo "Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY repository secret."
+            exit 1
+          fi
+
+          curl --fail --silent --show-error \
+            --output /dev/null \
+            --header "apikey: $SUPABASE_PUBLISHABLE_KEY" \
+            --header "Accept: application/json" \
+            "${SUPABASE_URL%/}/rest/v1/profiles?select=id&limit=1"
+
+          echo "Supabase responded successfully."
