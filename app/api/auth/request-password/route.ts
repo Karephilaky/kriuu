@@ -72,7 +72,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const redirectTo = `${getSiteUrl()}/auth/callback?next=/auth/update-password`;
+  const siteUrl = getSiteUrl(request);
+  const redirectTo = `${siteUrl}/auth/callback?next=/auth/update-password`;
 
   if (!authUser && application?.status === 'approved') {
     const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(normalizedEmail, {
@@ -118,7 +119,7 @@ function getPasswordEmailError(message: string) {
     return {
       status: 500,
       message:
-        'Supabase no permite la URL de redirección. Agrega http://localhost:3000/auth/callback en Authentication > URL Configuration.',
+        'Supabase no permite la URL de redirección. Agrega https://kriuu.com/auth/callback en Authentication > URL Configuration.',
     };
   }
 

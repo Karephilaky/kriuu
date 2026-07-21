@@ -25,6 +25,11 @@ SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
 KRIUU_SUPABASE_APPLICATIONS_TABLE=applications
 ```
 
+En producción, configura `NEXT_PUBLIC_SITE_URL=https://kriuu.com`. En Supabase,
+ve a **Authentication > URL Configuration**, usa `https://kriuu.com` como
+**Site URL** y agrega `https://kriuu.com/auth/callback` a **Redirect URLs**. Conserva
+`http://localhost:3000/auth/callback` solo para desarrollo local.
+
 La publishable key de Supabase es pública. La service role key solo debe existir en `.env.local` y en variables privadas del hosting; nunca debe usarse en componentes cliente.
 
 ## Mantener Supabase Activo

@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
   const supabaseAdmin = createAdminSupabaseClient();
   const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
-    redirectTo: `${getSiteUrl()}/auth/callback?next=/auth/update-password`,
+    redirectTo: `${getSiteUrl(request)}/auth/callback?next=/auth/update-password`,
     data: { nombres, apellidos },
   });
 
