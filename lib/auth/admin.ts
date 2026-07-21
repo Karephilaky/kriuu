@@ -24,11 +24,29 @@ export async function findAuthUserByEmail(email: string): Promise<User | null> {
   return null;
 }
 
-export function getSiteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'http://localhost:3000')
-  );
+export function getSiteUrl(request?: Request) {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const isLocalConfiguredUrl = configuredSiteUrl
+    ? /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(configuredSiteUrl)
+    : false;
+
+  if (process.env.NODE_ENV === 'production') {
+    return configuredSiteUrl && !isLocalConfiguredUrl
+      ? configuredSiteUrl.replace(/\/+$/, '')
+      : 'https://kriuu.com';
+  }
+
+  if (configuredSiteUrl) {
+    return configuredSiteUrl.replace(/\/+$/, '');
+  }
+
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`.replace(/\/+$/, '');
+  }
+
+  if (request) {
+    return new URL(request.url).origin;
+  }
+
+  return configuredSiteUrl?.replace(/\/+$/, '') ?? 'http://localhost:3000';
 }

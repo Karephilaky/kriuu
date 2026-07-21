@@ -25,7 +25,27 @@ SUPABASE_SERVICE_ROLE_KEY=YOUR_SERVICE_ROLE_KEY
 KRIUU_SUPABASE_APPLICATIONS_TABLE=applications
 ```
 
+En producción, configura `NEXT_PUBLIC_SITE_URL=https://kriuu.com`. En Supabase,
+ve a **Authentication > URL Configuration**, usa `https://kriuu.com` como
+**Site URL** y agrega `https://kriuu.com/auth/callback` a **Redirect URLs**. Conserva
+`http://localhost:3000/auth/callback` solo para desarrollo local.
+
 La publishable key de Supabase es pública. La service role key solo debe existir en `.env.local` y en variables privadas del hosting; nunca debe usarse en componentes cliente.
+
+## Mantener Supabase Activo
+
+El workflow `.github/workflows/keep-supabase-active.yml` hace una consulta mínima a `profiles` cada 6 días. También se puede ejecutar manualmente desde **GitHub > Actions > Keep Supabase active > Run workflow**.
+
+Configura estos secretos en **GitHub > Settings > Secrets and variables > Actions**:
+
+```text
+SUPABASE_URL=https://tu-proyecto.supabase.co
+SUPABASE_PUBLISHABLE_KEY=tu_publishable_key
+```
+
+No uses la `SUPABASE_SERVICE_ROLE_KEY` para este workflow; la clave pública es suficiente para la consulta.
+
+El workflow valida primero la URL y la publishable key. Después intenta leer una fila de `profiles`; si RLS bloquea al rol `anon` con `401` o `403`, la ejecución se considera válida porque la petición sí llegó a Supabase. Los errores de red y del servidor continúan fallando para que sean visibles.
 
 ## Inscripciones Con Supabase
 

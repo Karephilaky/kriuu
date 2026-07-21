@@ -53,7 +53,7 @@ export async function POST(request: Request, context: RouteContext) {
 
   if (!authUser) {
     const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
-      redirectTo: `${getSiteUrl()}/auth/callback?next=/auth/update-password`,
+      redirectTo: `${getSiteUrl(request)}/auth/callback?next=/auth/update-password`,
       data: {
         nombres: application.nombres,
         apellidos: application.apellidos,
